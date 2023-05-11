@@ -3,13 +3,19 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import logger from 'log4js';
+import _ from 'lodash';
 
 function App() {
+  _.defaultsDeep({ 'a': { 'b': 2 } }, { 'a': { 'b': 1, 'c': 3 } }, "./package.json");
+
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
     fetch("/api")
-        .then((res) => res.json())
+        .then((res) => {
+          res.json()
+        })
         .then((data) => setData(data.message));
   }, []);
 
