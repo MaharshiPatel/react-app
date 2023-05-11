@@ -14,6 +14,7 @@ function App() {
   React.useEffect(() => {
     fetch("/api")
         .then((res) => {
+          logger.getLogger();
           res.json()
         })
         .then((data) => setData(data.message));
